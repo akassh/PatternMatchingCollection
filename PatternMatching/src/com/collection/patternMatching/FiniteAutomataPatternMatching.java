@@ -1,6 +1,7 @@
 /**
  * @author Akassh
  * Finite Automata Pattern Matching
+ * Time Complexity(m*n) worst case
  */
 package com.collection.patternMatching;
 
@@ -13,7 +14,7 @@ public class FiniteAutomataPatternMatching {
 		if(s==null)
 			return 0;
 		long l = 0l;
-		String temp = s.toUpperCase();
+		s = s.toUpperCase();
 		for(int i=0;i<s.length();++i)
 			l = l | (1 << s.charAt(i) - 65);
 		int count = 0;
@@ -64,7 +65,7 @@ public class FiniteAutomataPatternMatching {
 	
 	public static void main(String[] args) {
 		FiniteAutomataPatternMatching f = new FiniteAutomataPatternMatching();
-		String txt = "AAA GEEKS FOR GEEKS";
+		String txt = "GEEKS FORS GEEKS";
 		String pattern = "FOR";
 		System.out.printf("String: %s, Pattern: %s found at index: %d", txt, pattern, f.search(txt, pattern));
 	}
