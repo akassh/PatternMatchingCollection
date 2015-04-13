@@ -8,7 +8,7 @@ package com.collection.patternMatching;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class FiniteAutomataPatternMatching {
+public class FiniteAutomata implements PatternMatching {
 	
 	private int numberofUniqueCharactersInString(String s) {
 		if(s==null)
@@ -52,7 +52,7 @@ public class FiniteAutomataPatternMatching {
 		return pTable;
 	}
 	
-	int search(String txt, String pattern) {
+	public int search(String txt, String pattern) {
 		int[][] pTable = finiteAutomataPatternTableGenerator(pattern);
 		HashMap<Character, Integer> indexer = this.getCharactertoIndexMapping(pattern);
 		for(int i=0,j=0;i<txt.length();++i) {
@@ -64,7 +64,7 @@ public class FiniteAutomataPatternMatching {
 	}
 	
 	public static void main(String[] args) {
-		FiniteAutomataPatternMatching f = new FiniteAutomataPatternMatching();
+		FiniteAutomata f = new FiniteAutomata();
 		String txt = "GEEKS FORS GEEKS";
 		String pattern = "FOR";
 		System.out.printf("String: %s, Pattern: %s found at index: %d", txt, pattern, f.search(txt, pattern));
