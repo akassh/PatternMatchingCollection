@@ -26,22 +26,31 @@ public class KnuttMorrisPratt implements PatternMatching {
 		if(txt==null || txt.isEmpty() || pattern==null || pattern.isEmpty())
 			return -1;
 		int[] failureTable = failureTable(pattern);
-		for(int i=0,j=0;i<txt.length();++i) {
+		for(int i=0,j=0;i<txt.length();) {
 			if(txt.charAt(i)==pattern.charAt(j)) {
 				++i;
 				++j;
-			} else 
-				j = failureTable[j];
+			}
 			if(j==pattern.length())
-				return i+1-pattern.length();
+				return i+1-pattern.length();	
+			else if(i<txt.length() && txt.charAt(i)!=pattern.charAt(j))
+				if(j!=0)
+					j = failureTable[j-1];
+				else
+					i++;
+			
 		}
 		return -1;
 	}
 	
 	public static void main(String[] args) {
-		KnuttMorrisPratt f = new KnuttMorrisPratt();
+		
+		PatternMatching f = new KnuttMorrisPratt();
 		String txt = "GEEKS FORS GEEKS";
 		String pattern = "FOR";
-		System.out.printf("String: %s, Pattern: %s found at index: %d", txt, pattern, f.search(txt, pattern));
+		System.out.printf("String: %s, Pattern: %s found at index: %d\n", txt, pattern, f.search(txt, pattern));
+		txt = "ABABDABACDABABCABAB";
+		pattern = "ABABCABAB";
+		System.out.printf("String: %s, Pattern: %s found at index: %d\n", txt, pattern, f.search(txt, pattern));
 	}
 }

@@ -64,7 +64,7 @@ public class FiniteAutomata implements PatternMatching {
 	}
 	
 	public static void main(String[] args) {
-		FiniteAutomata f = new FiniteAutomata();
+		PatternMatching f = new FiniteAutomata();
 		String txt = "GEEKS FORS GEEKS";
 		String pattern = "FOR";
 		System.out.printf("String: %s, Pattern: %s found at index: %d", txt, pattern, f.search(txt, pattern));
